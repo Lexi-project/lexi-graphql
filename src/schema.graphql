@@ -1,3 +1,45 @@
+enum ExersiceType {
+  UNKNOWN
+  FILL_BLANK
+  YES_NO
+}
+scalar BigInt
+
+type FillBlankExerciseItem {
+    index: BigInt
+    length: BigInt
+    hint: String
+    answer: String
+}
+
+type FillBlankExerciseItemArray {
+    items: [FillBlankExerciseItem]
+}
+
+type FillBlankExercise {
+    replacements: [FillBlankExerciseItemArray]
+}
+
+type ConversationContent {
+    personName: String
+    quote: String
+}
+
+input GetExerciseContentRequest {
+  exerciseType: ExersiceType
+  context: String
+  level: String
+  isColloquial: Boolean
+  characters: [String]
+}
+
+type GetExerciseContentResponse {
+    id: BigInt
+    createdAt: String
+    content: ConversationContent
+    exerciseContent: FillBlankExercise
+}
+
 type Query {
-    hello: String
+    exercise(input: GetExerciseContentRequest): GetExerciseContentResponse
 }
