@@ -1,0 +1,3 @@
+[submodule "lexi-proto"]
+	path = lexi-proto
+	url = https://github.com/Lexi-project/lexi-proto.git
