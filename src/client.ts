@@ -34,14 +34,14 @@ const generateGrpcClient = (clientConfig: ClientConfig) => {
 };
 
 const exerciseGrpcClient = generateGrpcClient({
-  protoPath: "../lexi-proto/services/content_service/exercises.proto",
+  protoPath: "__dirname/../lexi-proto/services/content_service/exercises.proto",
   packageName: "content",
   serviceName: "ExerciseContentService",
   hostPath: process.env.CONTENT_SERVICE_HOST,
 });
 
 const creditGrpcClient = generateGrpcClient({
-  protoPath: "../lexi-proto/services/user_service/credit.proto",
+  protoPath: "__dirname/../lexi-proto/services/user_service/credit.proto",
   packageName: "credit",
   serviceName: "CreditService",
   hostPath: process.env.CREDIT_SERVICE_HOST,
