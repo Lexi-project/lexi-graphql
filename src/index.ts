@@ -18,7 +18,7 @@ const { url } = await startStandaloneServer(server, {
       authToken: req.headers.authorization
     }
   },
-  listen: { port: 4000 },
+  listen: { port: Number(process.env.APOLLO_SERVER_PORT) },
 });
 
 console.log(`🚀  Server ready at: ${url}`);
