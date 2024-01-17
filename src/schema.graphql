@@ -1,0 +1,77 @@
+enum ExersiceType {
+  UNKNOWN
+  FILL_BLANK
+  YES_NO
+}
+scalar BigInt
+
+type FillBlankExerciseItem {
+  index: BigInt
+  length: BigInt
+  hint: String
+  answer: String
+}
+
+type FillBlankExerciseItemArray {
+  items: [FillBlankExerciseItem]
+}
+
+type FillBlankExercise {
+  replacements: [FillBlankExerciseItemArray]
+}
+
+type ConversationContent {
+  personName: String
+  quote: String
+}
+
+input GetExerciseContentRequest {
+  exerciseType: ExersiceType
+  context: String
+  level: String
+  isColloquial: Boolean
+  characters: [String]
+}
+
+type GetExerciseContentResponse {
+  id: BigInt
+  createdAt: String
+  content: ConversationContent
+  exerciseContent: FillBlankExercise
+}
+
+type Query {
+  exercise(input: GetExerciseContentRequest): GetExerciseContentResponse
+}
+
+type BorrowCreditResponse {
+  transaction_id: Int
+}
+
+input BorrowCreditRequest {
+  credits: Int
+  token: String
+}
+
+type RollbackCreditResponse {
+  is_success: Boolean
+}
+
+input RollbackCreditRequest {
+  transaction_id: Int
+  token: String
+}
+
+type CommitCreditResponse {
+  is_success: Boolean
+}
+
+input CommitCreditRequest {
+  transaction_id: Int
+}
+
+type Mutation {
+  BorrowCredit(input: BorrowCreditRequest): BorrowCreditResponse
+  RollbackCredit(input: RollbackCreditRequest): RollbackCreditResponse
+  CommitCredit(input: CommitCreditRequest): CommitCreditResponse
+}
